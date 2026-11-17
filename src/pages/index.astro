@@ -1,0 +1,601 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import PhotoPanel from '../components/PhotoPanel.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import Quote from '../components/Quote.astro';
+import WaveDivider from '../components/WaveDivider.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { photo } from '../lib/images';
+import { quote, recommendationCount } from '../lib/quotes';
+import { site } from '../lib/site';
+import { featuredWork } from '../lib/work';
+
+const headshot = photo('headshot');
+const race = photo('race');
+const kitten = photo('hannah-kitten');
+
+const figures = [
+  { figure: '7+', unit: 'years', caption: 'writing for SaaS products' },
+  { figure: '100%', caption: 'of Help Center content owned for two products' },
+  { figure: '20+', caption: 'live help articles and videos you can read today' },
+  { figure: String(recommendationCount), caption: 'LinkedIn recommendations from managers and teammates' },
+];
+---
+<BaseLayout
+  title="Hannah Bailey — Technical writer, UX writer, content designer"
+  description="Hannah Bailey is a technical writer, UX writer and content designer who makes complex products easy to understand."
+>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none" focusable="false">
+        <path fill="#c8eae2" d="M0 36c96-28 192 4 288 10s192-24 288-30 192 28 288 32 192-24 288-28 192 12 288 8V200H0z"></path>
+        <path fill="#9bdbd0" d="M0 88c96-26 192 6 288 12s192-22 288-28 192 26 288 30 192-22 288-26 192 10 288 6V200H0z"></path>
+        <path fill="#5fc4b8" opacity=".45" d="M0 132c96-24 192 6 288 12s192-20 288-26 192 24 288 28 192-20 288-24 192 8 288 4V200H0z"></path>
+        <path fill="#fbf3e6" d="M0 162c96-20 192 6 288 10s192-18 288-24 192 22 288 26 192-18 288-22 192 8 288 4V200H0z"></path>
+      </svg>
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <svg class="wtick" width="28" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+          {site.roles}
+        </p>
+        <h1 id="hero-title">I make complex products <em>easy</em> to understand.</h1>
+        <p class="lede">
+          For 7+ years I’ve written the help centers, <span class="nw">in-product</span> copy, onboarding and video that help people use SaaS products with confidence.
+        </p>
+        <div class="btn-group">
+          <Button href="/work/">See my work</Button>
+          <Button href="/hannah-bailey-resume.pdf" variant="ghost">Download resume</Button>
+        </div>
+        <p class="hero-note">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Based in {site.location} · {site.availability}</span>
+        </p>
+      </div>
+
+      <div class="hero-photo">
+        <span class="photo-stamp" aria-hidden="true">
+          <svg width="30" height="20" viewBox="0 0 30 20" fill="none" focusable="false">
+            <path d="M1 12.5c3-5 6-5 9 0s6 5 9 0 6-5 9 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <div class="photo-frame">
+          <Image
+            class="hero-img"
+            src={headshot}
+            width={800}
+            height={1000}
+            alt="Hannah Bailey smiling at a café table"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProofStrip figures={figures} />
+
+  <!-- Selected work -->
+  <section class="work section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head">
+        <svg class="wtick" width="34" height="12" viewBox="0 0 34 12" fill="none" aria-hidden="true" focusable="false">
+          <path d="M1 7.5c3.8-5.4 7.6-5.4 11.4 0s7.6 5.4 11.4 0 5.4-3.8 8.2-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        <h2 id="work-title">Selected work</h2>
+      </div>
+
+      <div class="work-grid">
+        {featuredWork.map((page, index) => <WorkCard page={page} accent={((index % 4) + 1) as 1 | 2 | 3 | 4} />)}
+      </div>
+
+      <p class="all-work">
+        <a class="read" href="/work/">All work <span class="arrow" aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- How I work -->
+  <section class="approach section" id="about" aria-labelledby="approach-title">
+    <div class="wrap approach-grid">
+      <div>
+        <div class="approach-head">
+          <svg class="wtick" width="30" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+          <h2 id="approach-title">How I work</h2>
+        </div>
+      </div>
+      <div class="approach-text">
+        <p>
+          I like to get involved before the UI exists. I start with <span class="q">‘Why are we doing this?’</span>, define the problem, and think less about the screen than about how a person moves through the product. That’s where content begins.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <WaveDivider color="#0d5660" variant="in" />
+  <section class="quote-band" aria-label="Recommendation">
+    <div class="wrap">
+      <Quote
+        quote={quote('barbara-green-home')}
+        showRelationship
+        highlight="truly helps users succeed"
+      />
+    </div>
+  </section>
+  <WaveDivider color="#062e34" variant="out" />
+
+  <!-- Beyond the docs -->
+  <section class="beyond" aria-labelledby="beyond-title">
+    <div class="wrap">
+      <div class="section-head">
+        <svg class="wtick" width="34" height="12" viewBox="0 0 34 12" fill="none" aria-hidden="true" focusable="false">
+          <path d="M1 7.5c3.8-5.4 7.6-5.4 11.4 0s7.6 5.4 11.4 0 5.4-3.8 8.2-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        <h2 id="beyond-title">Beyond the docs</h2>
+      </div>
+
+      <div class="beyond-grid">
+        <PhotoPanel
+          image={race}
+          alt="Two motorcycles leaning into a corner on a race track, a red bike leading"
+          title="Motorsports photography"
+          description="I shoot motorcycle racing up and down the East Coast as Umbra Photography: fast subjects, changing light, tight deadlines."
+          link={{ href: site.umbra, label: 'See Umbra Photography' }}
+          focus="low"
+          width={1200}
+          height={800}
+        />
+        <PhotoPanel
+          image={kitten}
+          alt="Hannah holding a tabby kitten"
+          title="Kitten fostering"
+          description="I rescue and foster kittens until they’re healthy, social and ready for a home of their own."
+          focus="high"
+          width={720}
+          height={960}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing band -->
+  <WaveDivider color="#08363d" variant="in" />
+  <section class="cta" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta-inner">
+        <svg class="deco" viewBox="0 0 1200 140" preserveAspectRatio="none" fill="none" aria-hidden="true" focusable="false">
+          <path d="M-20 96c120-34 240-34 360 0s240 34 360 0 240-34 360 0 240 34 360 0" stroke="#4ecdc0" stroke-opacity=".22" stroke-width="1.5"></path>
+          <path d="M-20 118c120-30 240-30 360 0s240 30 360 0 240-30 360 0 240 30 360 0" stroke="#f6b23d" stroke-opacity=".16" stroke-width="1.5"></path>
+          <path d="M-20 74c120-38 240-38 360 0s240 38 360 0 240-38 360 0 240 38 360 0" stroke="#4ecdc0" stroke-opacity=".16" stroke-width="1.5"></path>
+        </svg>
+        <div class="cta-kicker">
+          <svg class="wtick" width="54" height="16" viewBox="0 0 54 16" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 10c6-8 12-8 18 0s12 8 18 0 8.6-5.8 16-4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <h2 id="cta-title">Let’s <em>talk</em>.</h2>
+        <p>I’m looking for my next technical writing, UX writing or content design role.</p>
+        <div class="btn-group">
+          <Button href={`mailto:${site.email}`}>Email me</Button>
+          <Button href={site.linkedin} variant="ghost">LinkedIn</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <WaveDivider color="#062b31" variant="out" />
+</BaseLayout>
+
+<style>
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    overflow: clip;
+    padding: clamp(40px, 5.4vw, 68px) 0 clamp(150px, 17vw, 230px);
+    background:
+      radial-gradient(50% 54% at 82% 10%, rgba(246, 178, 61, 0.34) 0%, rgba(246, 178, 61, 0) 72%),
+      linear-gradient(180deg, #fffaef 0%, #fdf4e4 38%, #eefaf5 72%, #dcf4ec 100%);
+  }
+  .hero-waves {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 0;
+    width: 100%;
+    height: clamp(126px, 15.6vw, 208px);
+    pointer-events: none;
+  }
+  .hero-waves svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.06fr 0.94fr;
+    gap: clamp(32px, 4.6vw, 68px);
+    align-items: center;
+  }
+  .nw {
+    white-space: nowrap;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 9px 15px 9px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(11, 139, 135, 0.11);
+    border: 1px solid rgba(11, 139, 135, 0.22);
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--deep);
+  }
+  .eyebrow .wtick {
+    width: 26px;
+  }
+  h1 {
+    font-size: var(--display-1);
+    line-height: 0.98;
+    letter-spacing: -0.036em;
+    font-weight: 700;
+    text-wrap: balance;
+    max-width: 15ch;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -0.024em;
+    color: var(--coral);
+  }
+  .lede {
+    margin-top: clamp(22px, 2.6vw, 30px);
+    max-width: 33rem;
+    font-size: var(--text-lede);
+    line-height: 1.62;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .btn-group {
+    margin-top: clamp(28px, 3.4vw, 38px);
+  }
+  .hero-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: clamp(24px, 3vw, 32px);
+    padding: 9px 17px 9px 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 252, 244, 0.78);
+    border: 1px solid rgba(8, 54, 61, 0.1);
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .hero-note .dot {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--aqua-2);
+    display: grid;
+    place-items: center;
+  }
+  .hero-note .dot::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--turquoise);
+    box-shadow: 0 0 0 3px rgba(78, 205, 192, 0.35);
+  }
+
+  .hero-photo {
+    position: relative;
+    justify-self: end;
+    width: 100%;
+    max-width: 414px;
+  }
+  .hero-photo::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: 22px -18px -14px 26px;
+    background: linear-gradient(155deg, #ffd07a 0%, var(--sun) 44%, var(--sun-deep) 100%);
+    border-radius: 999px 999px 28px 28px;
+    transform: rotate(-1.8deg);
+    box-shadow: 0 30px 50px -34px rgba(231, 154, 36, 0.95);
+  }
+  .photo-frame {
+    position: relative;
+    z-index: 1;
+    padding: 9px;
+    background: var(--paper);
+    border-radius: 999px 999px 26px 26px;
+    box-shadow:
+      var(--shadow-card),
+      0 0 0 1px rgba(8, 54, 61, 0.05);
+  }
+  .photo-frame :global(img.hero-img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 58% 31%;
+    border-radius: 999px 999px 20px 20px;
+  }
+  .photo-stamp {
+    position: absolute;
+    z-index: 2;
+    left: -16px;
+    bottom: 30px;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--sun);
+    border: 4px solid var(--paper);
+    box-shadow: 0 14px 26px -14px rgba(8, 54, 61, 0.55);
+    color: var(--deep);
+  }
+
+  /* ---------- work ---------- */
+  .work {
+    padding: clamp(50px, 7vw, 86px) 0 clamp(28px, 4vw, 44px);
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .all-work {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(20px, 3vw, 30px);
+  }
+
+  /* ---------- approach ---------- */
+  .approach {
+    padding: clamp(46px, 6.6vw, 84px) 0;
+  }
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 0.36fr 1fr;
+    gap: clamp(28px, 5vw, 72px);
+    align-items: start;
+  }
+  .approach-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .approach-head h2 {
+    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .approach-text {
+    position: relative;
+    padding-left: clamp(24px, 3.6vw, 48px);
+  }
+  .approach-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--turquoise), var(--sun));
+    border-radius: 3px;
+  }
+  .approach-text p {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+    line-height: 1.4;
+    letter-spacing: -0.014em;
+    color: var(--ink);
+    max-width: 41rem;
+    text-wrap: pretty;
+  }
+  .approach-text .q {
+    color: var(--coral-ink);
+    font-style: italic;
+  }
+
+  /* ---------- quote band ---------- */
+  .quote-band {
+    background:
+      radial-gradient(70% 95% at 88% 0%, rgba(23, 150, 145, 0.42) 0%, rgba(23, 150, 145, 0) 62%),
+      linear-gradient(168deg, #0d5660 0%, #083c44 56%, #062e34 100%);
+    color: var(--sand);
+  }
+  .quote-band :global(.wrap) {
+    position: relative;
+    padding-block: clamp(48px, 6.6vw, 82px);
+  }
+
+  /* ---------- beyond ---------- */
+  .beyond {
+    padding: clamp(48px, 7vw, 88px) 0 clamp(20px, 3vw, 30px);
+  }
+  .beyond-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ---------- closing band ---------- */
+  .cta {
+    position: relative;
+    overflow: clip;
+    background:
+      radial-gradient(72% 84% at 50% -12%, rgba(24, 167, 159, 0.34) 0%, rgba(24, 167, 159, 0) 66%),
+      linear-gradient(180deg, #08363d 0%, #0a4750 46%, #062b31 100%);
+    color: var(--sand);
+  }
+  .cta :global(.wrap) {
+    position: relative;
+    z-index: 1;
+    padding-block: clamp(50px, 5.8vw, 74px) clamp(42px, 5vw, 62px);
+    text-align: center;
+  }
+  .cta-inner {
+    position: relative;
+  }
+  .cta-inner .deco {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -38px;
+    height: 132px;
+    width: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.55;
+  }
+  .cta-kicker {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .cta-kicker .wtick {
+    color: var(--sun);
+  }
+  .cta h2 {
+    font-size: clamp(3.1rem, 7.2vw, 5.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.042em;
+    font-weight: 700;
+    color: var(--sand);
+  }
+  .cta h2 em {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--sun);
+    margin-left: 0.05em;
+  }
+  .cta p {
+    margin: 18px auto 0;
+    max-width: 34rem;
+    color: #cfe4e1;
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    text-wrap: pretty;
+  }
+  .cta .btn-group {
+    justify-content: center;
+    margin-top: clamp(26px, 3.4vw, 34px);
+  }
+  .cta :global(.btn-ghost) {
+    color: var(--sand);
+    border-color: rgba(251, 243, 230, 0.45);
+  }
+  .cta :global(.btn-ghost:hover) {
+    color: #fffdf7;
+    border-color: var(--sand);
+    background: rgba(251, 243, 230, 0.14);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1000px) {
+    .hero-inner {
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+    }
+    .hero-photo {
+      max-width: 368px;
+    }
+    .eyebrow {
+      font-size: 0.67rem;
+      letter-spacing: 0.09em;
+    }
+  }
+  @media (max-width: 900px) {
+    .approach-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .approach-text {
+      padding-left: 22px;
+    }
+  }
+  @media (max-width: 720px) {
+    .section {
+      scroll-margin-top: 16px;
+    }
+    .hero {
+      padding-top: clamp(30px, 6vw, 46px);
+      padding-bottom: clamp(130px, 26vw, 180px);
+    }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: clamp(34px, 7vw, 48px);
+    }
+    .hero-photo {
+      justify-self: center;
+      max-width: 430px;
+      margin-top: 8px;
+    }
+    .hero-photo::before {
+      inset: 16px -12px -10px 18px;
+    }
+    h1 {
+      max-width: 18ch;
+    }
+    .work-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .beyond-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  @media (max-width: 520px) {
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      gap: 8px;
+      padding: 8px 12px 8px 10px;
+    }
+    .eyebrow .wtick {
+      display: none;
+    }
+    .hero-note {
+      font-size: 0.88rem;
+      padding: 8px 14px 8px 8px;
+      align-items: flex-start;
+    }
+    .btn-group :global(.btn) {
+      flex: 1 1 100%;
+    }
+    .photo-stamp {
+      left: -6px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
+    }
+    .cta :global(.wrap) {
+      padding-block: 52px 58px;
+    }
+  }
+</style>
