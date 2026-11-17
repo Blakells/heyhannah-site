@@ -28,7 +28,7 @@
         - Strategic documentation skills, cross-functional collaboration, and ability to simplify complex technical workflows.
   links:
     - label: DocuSign integration guide in the Go Method Help Center
-      href: https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/docusign
+      href: https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/integrate-with-docusign
 
 - slug: help-centers
   label: Documentation
@@ -87,12 +87,6 @@
       paragraphs:
         - Feature documentation produced in an Agile environment, aligned with frequent product releases and evolving system behavior.
       items:
-        - label: Go Method — January 31, 2024
-          href: https://help.acst.com/en/go-method/whats-new/2024/january-31-2024
-        - label: Go Method — September 13, 2024
-          href: https://help.acst.com/en/go-method/whats-new/2024/september-13-2024
-        - label: Go Method — December 6, 2024
-          href: https://help.acst.com/en/go-method/whats-new/2024/december-6-2024
         - label: Go Method — February 17, 2025
           href: https://help.acst.com/en/go-method/whats-new/2025/february-17-2025
         - label: Go Method — March 28, 2025

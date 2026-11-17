@@ -73,7 +73,7 @@ test.describe('DocuSign case study', () => {
       page.getByRole('link', { name: 'DocuSign integration guide in the Go Method Help Center' }),
     ).toHaveAttribute(
       'href',
-      'https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/docusign',
+      'https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/integrate-with-docusign',
     );
   });
 });
@@ -96,12 +96,12 @@ test.describe('Help Centers', () => {
 });
 
 test.describe('Onboarding and release notes', () => {
-  test('lists all fourteen help-site links in their three groups', async ({ page }) => {
+  test('lists all eleven help-site links in their three groups', async ({ page }) => {
     await page.goto('/work/onboarding/');
     const headings = await page.locator('main .prose h2').allTextContents();
     expect(headings).toEqual(['Onboarding', 'First-time setup', 'Release notes ("What\'s new")']);
     const links = page.locator('main a[href^="https://help.acst.com/en/"]');
-    await expect(links).toHaveCount(14);
+    await expect(links).toHaveCount(11);
     await expect(page.locator('main')).toContainText(
       'Feature documentation produced in an Agile environment, aligned with frequent product releases and evolving system behavior.',
     );

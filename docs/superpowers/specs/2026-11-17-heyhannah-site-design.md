@@ -128,7 +128,7 @@ Every work page has:
   - Challenges & decisions
   - Outcome / impact
   - What this demonstrates
-- Live example: `https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/docusign`.
+- Live example: `https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/integrate-with-docusign`.
 
 **Help Centers.** Owned 100% of Help Center content for Go Method and Growth Method: the information architecture,
 article structure and topic metadata. Three samples, each with a heading, her one-line description from Notion, and a
@@ -149,7 +149,7 @@ link.
   - Event Checklist (`go-method/how-to/event-checklist`)
   - Roles & Permissions (`go-method/how-to/manage-people/roles-and-permissions/roles-in-go-method`)
 - **Release notes ("What's new"):**
-  - Go Method: January 31, 2024; September 13, 2024; December 6, 2024; February 17, 2025; March 28, 2025; July 29, 2025.
+  - Go Method: February 17, 2025; March 28, 2025; July 29, 2025. (The help site no longer keeps the 2024 notes.)
   - Paths follow `go-method/whats-new/<year>/<month>-<day>-<year>`.
 - The page uses her Notion framing: documentation written alongside frequent Agile releases.
 

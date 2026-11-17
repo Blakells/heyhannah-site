@@ -118,10 +118,10 @@ describe('work pages', () => {
     expect(samples.every((item) => item.description && item.href)).toBe(true);
   });
 
-  it('has all fourteen onboarding and release-note links', () => {
+  it('has all eleven onboarding and release-note links', () => {
     const page = workPage('onboarding');
     const links = page.sections.flatMap((section) => section.items);
-    expect(links).toHaveLength(14);
+    expect(links).toHaveLength(11);
     expect(links.every((item) => item.href?.startsWith('https://help.acst.com/en/'))).toBe(true);
   });
 
