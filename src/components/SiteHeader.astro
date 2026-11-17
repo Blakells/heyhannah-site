@@ -1,0 +1,142 @@
+---
+import { site } from '../lib/site';
+import Button from './Button.astro';
+import WaveMark from './WaveMark.astro';
+
+const links = [
+  { href: '/work/', label: 'Work' },
+  { href: '/about/', label: 'About' },
+  { href: '/resume/', label: 'Resume' },
+];
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label={`${site.name}, home`}>
+      <WaveMark width={27} height={19} />
+      {site.name}
+    </a>
+    <nav class="nav" aria-label="Main">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={path === link.href || path.startsWith(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="header-cta"><Button href={`mailto:${site.email}`} size="small">Email me</Button></div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 243, 230, 0.9);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--turquoise) 0%,
+      var(--turquoise-bright) 34%,
+      var(--sun) 68%,
+      var(--coral) 100%
+    );
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 80px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-right: auto;
+    padding: 12px 0;
+    font-family: var(--serif);
+    font-size: 1.38rem;
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand :global(.wave-mark) {
+    color: var(--turquoise);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 15px;
+    border-radius: var(--radius-pill);
+    color: var(--ink-2);
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    transition:
+      color 0.18s ease,
+      background 0.18s ease;
+  }
+  .nav a:hover {
+    color: var(--deep);
+    background: rgba(11, 139, 135, 0.1);
+  }
+  .nav a[aria-current='page'] {
+    color: var(--deep);
+    background: rgba(11, 139, 135, 0.13);
+  }
+  .header-cta {
+    margin-left: 16px;
+  }
+
+  @media (max-width: 720px) {
+    .site-header {
+      position: static;
+    }
+    .nav {
+      order: 3;
+      width: 100%;
+      justify-content: flex-start;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      padding: 4px 0;
+    }
+    .nav a {
+      padding: 10px 14px 10px 0;
+      margin-right: 12px;
+    }
+    .header-cta {
+      margin-left: auto;
+    }
+    .header-inner {
+      padding-bottom: 2px;
+    }
+  }
+  @media (max-width: 520px) {
+    .brand {
+      font-size: 1.24rem;
+    }
+  }
+</style>

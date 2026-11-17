@@ -1,0 +1,65 @@
+---
+import { site } from '../lib/site';
+import WaveMark from './WaveMark.astro';
+---
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-mark">
+      <WaveMark width={22} height={14} />
+      <span>© 2026 {site.name} · heyhannah.xyz</span>
+    </p>
+    <p class="footer-links">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href={site.linkedin}>LinkedIn</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 20px 0 28px;
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 18px;
+  }
+  .footer-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.86rem;
+    color: var(--ink-2);
+  }
+  .footer-mark :global(.wave-mark) {
+    color: var(--turquoise);
+    flex: none;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 8px;
+    font-size: 0.86rem;
+    color: var(--ink-2);
+  }
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ocean);
+    font-weight: 600;
+    text-decoration-color: rgba(13, 92, 102, 0.42);
+    text-underline-offset: 3px;
+  }
+  .footer-links a:hover {
+    color: var(--deep);
+    text-decoration-color: var(--turquoise);
+  }
+  .sep {
+    color: var(--ink-2);
+  }
+</style>

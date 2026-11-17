@@ -1,0 +1,10 @@
+---
+interface Props {
+  href: string;
+  /** primary: sun-gold; ghost: outlined on sand. */
+  variant?: 'primary' | 'ghost';
+  size?: 'normal' | 'small';
+}
+const { href, variant = 'primary', size = 'normal' } = Astro.props;
+---
+<a class:list={['btn', `btn-${variant}`, { 'btn-sm': size === 'small' }]} href={href}><slot /></a>
