@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import WaveMark from '../components/WaveMark.astro';
+---
+<BaseLayout
+  title="Page not found · Hannah Bailey"
+  description="That page doesn’t exist on heyhannah.xyz. Head back home or browse Hannah Bailey’s technical writing, UX writing and content design work."
+>
+  <section class="not-found" aria-labelledby="not-found-title">
+    <div class="nf-waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none" focusable="false">
+        <path fill="#c8eae2" d="M0 36c96-28 192 4 288 10s192-24 288-30 192 28 288 32 192-24 288-28 192 12 288 8V200H0z"></path>
+        <path fill="#9bdbd0" d="M0 88c96-26 192 6 288 12s192-22 288-28 192 26 288 30 192-22 288-26 192 10 288 6V200H0z"></path>
+        <path fill="#5fc4b8" opacity=".45" d="M0 132c96-24 192 6 288 12s192-20 288-26 192 24 288 28 192-20 288-24 192 8 288 4V200H0z"></path>
+        <path fill="#fbf3e6" d="M0 162c96-20 192 6 288 10s192-18 288-24 192 22 288 26 192-18 288-22 192 8 288 4V200H0z"></path>
+      </svg>
+    </div>
+
+    <div class="wrap nf-wrap">
+      <div class="nf-inner">
+        <p class="nf-label">
+          <WaveMark width={34} height={24} />
+          404
+        </p>
+        <h1 id="not-found-title">This page drifted <em>off</em>.</h1>
+        <p class="nf-text">
+          The page you’re looking for doesn’t exist or has moved. Let’s get you back to dry land.
+        </p>
+        <div class="btn-group">
+          <Button href="/">Back home</Button>
+          <Button href="/work/" variant="ghost">See my work</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    position: relative;
+    overflow: clip;
+    min-height: min(70vh, 620px);
+    display: flex;
+    align-items: center;
+    padding: clamp(48px, 9vh, 96px) 0 clamp(150px, 20vh, 210px);
+    background:
+      radial-gradient(52% 56% at 82% 4%, rgba(246, 178, 61, 0.3) 0%, rgba(246, 178, 61, 0) 70%),
+      linear-gradient(180deg, #fffaef 0%, #fdf4e4 40%, #eefaf5 74%, #dcf4ec 100%);
+  }
+  .nf-waves {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    height: clamp(110px, 15vw, 190px);
+    pointer-events: none;
+  }
+  .nf-waves svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .nf-wrap {
+    position: relative;
+    z-index: 1;
+  }
+  .nf-inner {
+    max-width: 40rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .nf-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding: 9px 17px 9px 14px;
+    border-radius: var(--radius-pill);
+    background: rgba(11, 139, 135, 0.11);
+    border: 1px solid rgba(11, 139, 135, 0.22);
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--deep);
+  }
+  .nf-label :global(.wave-mark) {
+    color: var(--turquoise);
+  }
+  h1 {
+    font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+    line-height: 0.99;
+    letter-spacing: -0.036em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--coral);
+  }
+  .nf-text {
+    margin: clamp(18px, 2.4vw, 24px) auto 0;
+    max-width: 30rem;
+    font-size: var(--text-lede);
+    line-height: 1.62;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .btn-group {
+    justify-content: center;
+    margin-top: clamp(28px, 3.6vw, 38px);
+  }
+
+  @media (max-width: 520px) {
+    .not-found {
+      padding-top: 42px;
+      padding-bottom: 168px;
+    }
+    .btn-group :global(.btn) {
+      flex: 1 1 100%;
+    }
+  }
+</style>
