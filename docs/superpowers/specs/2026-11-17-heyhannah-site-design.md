@@ -36,7 +36,7 @@ The site is written in Hannah's voice (first person). It never invents a fact, n
 | `/work/video/` | Product video and walkthroughs. |
 | `/work/marketing-emails/` | The trial email series and the first-touch Help Center hubs. |
 | `/about/` | Her story, how she works, kind words, and life beyond the docs. |
-| `/resume/` | The web resume, plus a PDF (`/resume.pdf`) generated from it on every build. |
+| `/resume/` | The web resume, plus a PDF (`/hannah-bailey-resume.pdf`) generated from it on every build. |
 | 404 | A short page in the site's style, linking to Home and Work. |
 
 **Header.** A small wave mark and "Hannah Bailey", linking home. Links to Work, About and Resume, and an "Email me"
@@ -58,7 +58,7 @@ The page follows the mockup, with this copy.
 - H1: "I make complex products easy to understand." The word "easy" is set in coral italic.
 - Lede: "For 7+ years I've written the help centers, in-product copy, onboarding and video that help people use SaaS
   products with confidence."
-- Buttons: "See my work" (to `/work/`) and "Download resume" (to `/resume.pdf`).
+- Buttons: "See my work" (to `/work/`) and "Download resume" (to `/hannah-bailey-resume.pdf`).
 - The headshot, in an arch.
 - Note: "Based in Florence, SC · Open to remote, hybrid and on-site roles".
 
@@ -251,7 +251,8 @@ wording is unchanged.
 
 - Every claim traces to her resume, Notion, LinkedIn or Blake's answers. No invented figures, employers or quotes.
 - Quotes are verbatim excerpts from her public LinkedIn recommendations, attributed by name and role.
-- No phone number, anywhere.
+- No phone number of hers, anywhere. (The email samples are her former employer's public marketing emails and show
+  its public support number; they are images and PDFs, which the content check does not read.)
 - No email address other than `baileyhannah995@gmail.com`.
 - No placeholder text.
 - Her former employer's product names and public help-site links are fine: they are already public on her Notion
@@ -313,8 +314,16 @@ a work-page shell (label, H1, lede, body, live examples, next/back).
 stripped of all metadata (EXIF, GPS, camera) before they enter the repository. Astro's image pipeline serves sized
 versions.
 
-**Work samples.** The five microcopy PNGs and four email PDFs are downloaded from her public Notion pages. Each PDF's
-metadata (author, creator and title fields) is checked and cleared before commit.
+**Where they live.** The cleaned files are committed before the build, at fixed paths:
+- `src/assets/photos/`: `headshot.jpg`, `race.jpg`, `hannah-kitten.jpg`, `kitten-1.jpg`, `kitten-2.jpg`
+- `src/assets/samples/`: the five `microcopy-*.png` screenshots and `email-1-preview.jpg` to `email-4-preview.jpg`
+  (page images of the emails)
+- `public/samples/`: `email-1-welcome.pdf`, `email-2-getting-started.pdf`, `email-3-integrations.pdf`,
+  `email-4-best-use-cases.pdf`
+
+**Work samples.** The five microcopy PNGs and four email PDFs come from her public Notion pages. The screenshots were
+re-encoded without metadata. Each PDF's document info was rewritten: the title names the email, the author is Hannah
+Bailey, and the creator and producer are cleared.
 
 **Share image (`/og.png`).** 1200×630 px: the headshot, "Hannah Bailey", and "Technical writer · UX writer · Content
 designer", in the site's palette.
@@ -351,7 +360,8 @@ The same versions and tooling as umbreonics.com and blakells.dev:
 Content structure:
 - Content lives in YAML data files (site facts, work pages, quotes, resume), validated with zod.
 - Pages render from that data, so the resume page and PDF share one source.
-- `npm run build` runs `astro build` and then generates `dist/resume.pdf` from `/resume/`, as on blakells.dev.
+- `npm run build` runs `astro build` and then generates `dist/hannah-bailey-resume.pdf` from `/resume/`, as on
+  blakells.dev.
 
 ## 8. Quality checks
 
@@ -400,8 +410,8 @@ Each step needs Blake's yes when it comes up.
 4. **Pages:** set Pages to the workflow source. CI builds and deploys.
 5. **Domain:** once the DNS resolves to GitHub only (never to Cloudflare's own addresses), set the custom domain,
    wait for the certificate, then enforce HTTPS.
-6. **Read-through:** read every page live at desktop and phone width, click every link, confirm `/resume.pdf` and
-   the share card.
+6. **Read-through:** read every page live at desktop and phone width, click every link, confirm
+   `/hannah-bailey-resume.pdf` and the share card.
 
 ## 11. After launch
 
