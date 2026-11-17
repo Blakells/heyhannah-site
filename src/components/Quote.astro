@@ -1,0 +1,99 @@
+---
+import type { Quote as QuoteData } from '../lib/quotes';
+
+interface Props {
+  quote: QuoteData;
+  /** "band" sits on the deep-ocean quote band; "plain" sits on sand in a grid of kind words. */
+  tone?: 'band' | 'plain';
+  /** Show the relationship too, for example ", managed Hannah directly at ACS Technologies". */
+  showRelationship?: boolean;
+  /** A phrase inside the quote to set in the accent colour. */
+  highlight?: string;
+}
+const { quote, tone = 'band', showRelationship = false, highlight } = Astro.props;
+const split = highlight && quote.text.includes(highlight) ? highlight : undefined;
+const before = split ? quote.text.slice(0, quote.text.indexOf(split)) : '';
+const after = split ? quote.text.slice(quote.text.indexOf(split) + split.length) : '';
+---
+<figure class:list={['quote', `quote--${tone}`]}>
+  {
+    tone === 'band' && (
+      <svg class="qtick" width="46" height="14" viewBox="0 0 46 14" fill="none" aria-hidden="true" focusable="false">
+        <path d="M1 9c5-7 10-7 15 0s10 7 15 0 8-5.2 14-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    )
+  }
+  <blockquote>
+    <p>
+      {
+        split ? (
+          <>
+            &ldquo;{before}
+            <span class="quote-mark">{split}</span>
+            {after}&rdquo;
+          </>
+        ) : (
+          <>&ldquo;{quote.text}&rdquo;</>
+        )
+      }
+    </p>
+  </blockquote>
+  <figcaption>
+    — {quote.name}, {quote.role}{showRelationship && `, ${quote.relationship}`}
+  </figcaption>
+</figure>
+
+<style>
+  .quote blockquote {
+    margin: 0;
+    position: relative;
+  }
+  .quote blockquote p {
+    position: relative;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.55rem, 3.1vw, 2.4rem);
+    line-height: 1.3;
+    letter-spacing: -0.018em;
+    max-width: 30ch;
+    text-wrap: pretty;
+  }
+  .quote figcaption {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: clamp(24px, 3vw, 34px);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 52ch;
+  }
+
+  .quote--band {
+    color: var(--sand);
+  }
+  .quote--band .qtick {
+    color: var(--sun);
+    margin-bottom: clamp(20px, 2.6vw, 28px);
+  }
+  .quote--band .quote-mark {
+    color: #8fe0d6;
+  }
+  .quote--band figcaption {
+    color: #b8d6d2;
+  }
+
+  .quote--plain {
+    color: var(--ink);
+  }
+  .quote--plain blockquote p {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+  }
+  .quote--plain .quote-mark {
+    color: var(--coral-ink);
+    font-style: italic;
+  }
+  .quote--plain figcaption {
+    color: var(--ink-2);
+    margin-top: 16px;
+  }
+</style>

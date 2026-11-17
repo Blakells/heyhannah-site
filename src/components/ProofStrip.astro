@@ -1,0 +1,117 @@
+---
+interface Figure {
+  /** The big number, for example "7+" or "100%". */
+  figure: string;
+  /** A small word after the number, for example "years". */
+  unit?: string;
+  caption: string;
+}
+interface Props {
+  figures: Figure[];
+  /** The accessible name of the strip. */
+  label?: string;
+}
+const { figures, label = 'At a glance' } = Astro.props;
+---
+<section class="proof" aria-label={label}>
+  <div class="wrap">
+    <div class="proof-inner">
+      {
+        figures.map((item) => (
+          <div class="proof-item">
+            <div class="n">
+              {item.figure}
+              {item.unit && <span class="unit">{item.unit}</span>}
+            </div>
+            <p>— {item.caption}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof {
+    padding: clamp(8px, 1.6vw, 18px) 0 clamp(20px, 3vw, 30px);
+  }
+  .proof-inner {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: linear-gradient(125deg, #f0fbf7 0%, #e4f8f2 55%, #d9f3ec 100%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 26px;
+    padding: clamp(26px, 3.2vw, 38px) clamp(6px, 2vw, 14px);
+    box-shadow: 0 32px 58px -46px rgba(8, 54, 61, 0.6);
+  }
+  .proof-inner::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--turquoise) 0%, var(--turquoise-bright) 42%, var(--sun) 100%);
+    opacity: 0.9;
+  }
+  .proof-item {
+    padding: 2px clamp(12px, 2vw, 26px);
+  }
+  .proof-item + .proof-item {
+    border-left: 1px solid rgba(8, 54, 61, 0.13);
+  }
+  .n {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 3.7vw, 3.05rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: var(--turquoise);
+  }
+  .unit {
+    font-family: var(--sans);
+    font-size: 0.4em;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--ink-2);
+    margin-left: 0.12em;
+  }
+  .proof-item p {
+    margin-top: 12px;
+    font-size: 0.88rem;
+    line-height: 1.42;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 900px) {
+    .proof-inner {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 24px;
+      padding: 26px 8px;
+    }
+    .proof-item {
+      padding: 0 22px;
+    }
+    .proof-item + .proof-item {
+      border-left: 0;
+    }
+    .proof-item:nth-child(even) {
+      border-left: 1px solid rgba(8, 54, 61, 0.13);
+    }
+    .proof-item:nth-child(n + 3) {
+      border-top: 1px solid rgba(8, 54, 61, 0.13);
+      padding-top: 22px;
+    }
+  }
+  @media (max-width: 520px) {
+    .n {
+      font-size: 1.95rem;
+    }
+    .proof-item p {
+      font-size: 0.9rem;
+    }
+  }
+</style>

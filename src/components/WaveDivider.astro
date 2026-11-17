@@ -1,0 +1,32 @@
+---
+interface Props {
+  /** The colour of the band the waves lead into (variant "in") or out of (variant "out"). */
+  color: string;
+  /**
+   * "in": waves rise at the foot of the divider, into a dark band below.
+   * "out": the dark band above ends in a wave that returns to sand.
+   */
+  variant?: 'in' | 'out';
+}
+const { color, variant = 'in' } = Astro.props;
+---
+{
+  variant === 'in' ? (
+    <div class="wave-block" aria-hidden="true">
+      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" focusable="false">
+        <path
+          fill={color}
+          opacity=".55"
+          d="M0 46c96-26 192 4 288 12s192-24 288-30 192 28 288 32 192-24 288-28 192 8 288 4v36H0z"
+        />
+        <path fill={color} d="M0 52c96-22 192 6 288 14s192-26 288-32 192 30 288 34 192-26 288-30 192 10 288 6v28H0z" />
+      </svg>
+    </div>
+  ) : (
+    <div class="wave-block" aria-hidden="true">
+      <svg viewBox="0 0 1440 72" preserveAspectRatio="none" focusable="false">
+        <path fill={color} d="M0 0h1440v16c-96 18-192-4-288 0s-192 28-288 24-192-32-288-30S192 36 96 28 48 12 0 20z" />
+      </svg>
+    </div>
+  )
+}

@@ -1,0 +1,121 @@
+---
+import type { WorkPage } from '../lib/work';
+import { workHref } from '../lib/work';
+
+interface Props {
+  page: WorkPage;
+  /** Which wave-top accent to use: 1 turquoise, 2 teal, 3 gold, 4 coral. */
+  accent?: 1 | 2 | 3 | 4;
+  /** The card's heading level: h3 in the home page grid, h2 in the full work list. */
+  level?: 'h2' | 'h3';
+}
+const { page, accent = 1, level = 'h3' } = Astro.props;
+const Heading = level;
+---
+<article class={`card card-${accent}`}>
+  <svg class="card-wave" viewBox="0 0 600 44" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path class="back" d="M0 0h600v28c-75 14-150-10-225-2s-150 18-225 10S75 36 0 28z"></path>
+    <path class="front" d="M0 0h600v12c-75 20-150-6-225 2s-150 18-225 10S75 20 0 14z"></path>
+  </svg>
+  <p class="label">{page.label}</p>
+  <Heading class="card-title">
+    <a href={workHref(page.slug)} aria-label={`Read more about ${page.title}`}>
+      {page.title}
+    </a>
+  </Heading>
+  <p class="card-summary">{page.summary}</p>
+  <span class="read" aria-hidden="true">
+    Read more <span class="arrow">→</span>
+  </span>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 3vw, 34px);
+    padding-top: calc(clamp(24px, 3vw, 34px) + 22px);
+    background: linear-gradient(180deg, #e9faf5 0%, #f4fcf9 60%, #fbfefc 100%);
+    border: 1px solid rgba(8, 54, 61, 0.1);
+    border-radius: var(--radius-card);
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease,
+      border-color 0.22s ease;
+  }
+  .card-1 {
+    --accent: #18a79f;
+  }
+  .card-2 {
+    --accent: #0d7f8a;
+  }
+  .card-3 {
+    --accent: #ef9c22;
+  }
+  .card-4 {
+    --accent: #dd5f3f;
+  }
+  .card-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 44px;
+    pointer-events: none;
+  }
+  .card-wave path {
+    fill: var(--accent);
+  }
+  .card-wave .back {
+    opacity: 0.2;
+  }
+  .card-wave .front {
+    opacity: 0.7;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(8, 54, 61, 0.16);
+    box-shadow: 0 34px 48px -38px rgba(8, 54, 61, 0.7);
+  }
+  /* The mockup renders the label at body size because its `.card p` rule wins over `.label`. */
+  .card .label {
+    margin-top: 12px;
+    font-size: 1rem;
+  }
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  /* Stretch the title link over the whole card, so the title and body are clickable too. */
+  .card-title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+  }
+  .card-title {
+    margin-top: 16px;
+    font-size: var(--display-3);
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    max-width: 30ch;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .card-summary {
+    margin-top: 12px;
+    max-width: 60ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .read {
+    margin-top: auto;
+    padding-top: 24px;
+  }
+</style>

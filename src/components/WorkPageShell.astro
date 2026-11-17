@@ -1,0 +1,173 @@
+---
+interface Props {
+  /** The small label above the heading, for example "Case study". */
+  label: string;
+  /** The page's only h1. */
+  title: string;
+  lede: string;
+  /** The "Live examples" list; omitted when the body already lists the examples. */
+  links?: { label: string; href: string }[];
+  /** The next work page, for the foot-of-page link. */
+  next?: { label: string; href: string };
+  backHref?: string;
+  backLabel?: string;
+}
+const { label, title, lede, links = [], next, backHref = '/work/', backLabel = 'Back to all work' } = Astro.props;
+---
+<section class="work-hero" aria-labelledby="work-title">
+  <div class="wrap">
+    <p class="work-label">{label}</p>
+    <h1 id="work-title">{title}</h1>
+    <p class="lede">{lede}</p>
+  </div>
+</section>
+
+<div class="wrap work-body">
+  <div class="prose">
+    <slot />
+  </div>
+
+  {
+    links.length > 0 && (
+      <section class="work-links" aria-labelledby="live-examples">
+        <h2 id="live-examples">Live examples</h2>
+        <ul>
+          {links.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <nav class="work-nav" aria-label="Work pages">
+    {next && (
+      <a class="work-next" href={next.href}>
+        Next: {next.label} <span aria-hidden="true">→</span>
+      </a>
+    )}
+    <a class="work-back" href={backHref}>{backLabel}</a>
+  </nav>
+</div>
+
+<style>
+  .work-hero {
+    position: relative;
+    padding: clamp(44px, 5.6vw, 76px) 0 clamp(30px, 4vw, 46px);
+    background:
+      radial-gradient(52% 60% at 84% 6%, rgba(246, 178, 61, 0.28) 0%, rgba(246, 178, 61, 0) 70%),
+      linear-gradient(180deg, #fffaef 0%, #fdf4e4 46%, #eefaf5 100%);
+  }
+  /* Keep the hero copy and the body in the same centred reading column. */
+  .work-hero .wrap {
+    max-width: 46rem;
+  }
+  .work-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 9px 15px 9px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(11, 139, 135, 0.11);
+    border: 1px solid rgba(11, 139, 135, 0.22);
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--deep);
+  }
+  h1 {
+    font-size: clamp(2.4rem, 4.8vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.032em;
+    font-weight: 700;
+    max-width: 20ch;
+    text-wrap: balance;
+  }
+  .lede {
+    margin-top: clamp(18px, 2.4vw, 26px);
+    max-width: 40rem;
+    font-size: var(--text-lede);
+    line-height: 1.62;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .work-body {
+    display: grid;
+    gap: clamp(36px, 5vw, 56px);
+    max-width: 46rem;
+    padding-block: clamp(40px, 5vw, 62px);
+  }
+  .work-links {
+    max-width: 46rem;
+    padding: clamp(22px, 3vw, 30px) clamp(22px, 3vw, 32px);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    box-shadow: 0 26px 46px -44px rgba(8, 54, 61, 0.55);
+  }
+  .work-links h2 {
+    font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .work-links ul {
+    display: grid;
+    gap: 2px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .work-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ocean);
+    font-weight: 600;
+    text-decoration-color: rgba(13, 92, 102, 0.42);
+    text-underline-offset: 4px;
+  }
+  .work-links a:hover {
+    color: var(--deep);
+    text-decoration-color: var(--turquoise);
+  }
+  .work-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 24px;
+    padding-top: clamp(22px, 3vw, 30px);
+    border-top: 1px solid var(--rule);
+  }
+  .work-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 11px 20px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .work-next {
+    background: var(--deep);
+    color: var(--sand);
+  }
+  .work-next:hover {
+    background: var(--ocean);
+    color: var(--sand);
+  }
+  .work-back {
+    color: var(--ocean);
+    border: 1.5px solid rgba(11, 59, 66, 0.35);
+  }
+  .work-back:hover {
+    color: var(--deep);
+    border-color: var(--deep);
+    background: rgba(11, 139, 135, 0.1);
+  }
+</style>
