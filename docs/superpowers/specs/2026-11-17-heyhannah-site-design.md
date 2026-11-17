@@ -300,15 +300,8 @@ a work-page shell (label, H1, lede, body, live examples, next/back).
 
 ## 5. Images and files
 
-**Sources** (the originals stay out of the repository)
-
-| Photo | File in Blake's Downloads |
-|---|---|
-| Headshot (café) | `776040607_…_n.jpg` |
-| Race | `DSC_9064.jpg` |
-| Hannah with a kitten | `863414241_…_n.jpg` |
-| Kitten | `767101612_…_n.jpg` |
-| Cat on a chair | `750585700_…_n.jpg` |
+**Sources.** Five photos Blake supplied: the café headshot, the race, Hannah with a kitten, a kitten, and a cat on
+a chair. The originals stay out of the repository.
 
 **Processing.** Photos are cropped (the headshot without the people in the background), resized, compressed, and
 stripped of all metadata (EXIF, GPS, camera) before they enter the repository. Astro's image pipeline serves sized
