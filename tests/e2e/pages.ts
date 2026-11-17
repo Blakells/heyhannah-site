@@ -9,4 +9,5 @@ export const PAGES: string[] = [
   '/work/video/',
   '/work/marketing-emails/',
   '/about/',
+  '/resume/',
 ];

@@ -1,0 +1,540 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import WaveMark from '../components/WaveMark.astro';
+import { resume } from '../lib/resume';
+import { site } from '../lib/site';
+
+// The contact line names the site and the profile without the protocol or "www".
+const linkedinUrl = new URL(site.linkedin);
+const linkedinLabel = `${linkedinUrl.hostname.replace(/^www\./, '')}${linkedinUrl.pathname.replace(/\/$/, '')}`;
+const siteLabel = new URL(site.url).host;
+---
+<BaseLayout
+  title="Resume · Hannah Bailey"
+  description="Hannah Bailey’s resume: technical writing, UX writing and content design for SaaS products, with seven years of documentation and content strategy experience."
+>
+  <section class="resume-hero" aria-labelledby="resume-title">
+    <div class="hero-waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false">
+        <path fill="#c8eae2" d="M0 30c96-24 192 4 288 10s192-22 288-28 192 26 288 30 192-20 288-24 192 10 288 6V160H0z"></path>
+        <path fill="#9bdbd0" d="M0 72c96-22 192 6 288 12s192-20 288-26 192 24 288 28 192-18 288-22 192 8 288 4V160H0z"></path>
+        <path fill="#5fc4b8" opacity=".45" d="M0 108c96-20 192 6 288 10s192-18 288-24 192 22 288 26 192-18 288-20 192 6 288 4V160H0z"></path>
+        <path fill="#fbf3e6" d="M0 132c96-16 192 6 288 10s192-16 288-22 192 20 288 24 192-14 288-18 192 6 288 4V160H0z"></path>
+      </svg>
+    </div>
+
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <svg class="wtick" width="26" height="11" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+          Resume
+        </p>
+        <h1 id="resume-title">{site.name}</h1>
+        <p class="role">{resume.headline}</p>
+        <p class="contact">
+          <span>{site.location}</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href={site.url}>{siteLabel}</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href={site.linkedin}>{linkedinLabel}</a>
+        </p>
+        <p class="download"><Button href="/hannah-bailey-resume.pdf">Download PDF</Button></p>
+      </div>
+
+      <div class="hero-mark" aria-hidden="true">
+        <WaveMark width={148} height={104} />
+      </div>
+    </div>
+  </section>
+
+  <section class="resume-body" aria-label="Resume">
+    <div class="wrap">
+      <article class="paper">
+        <section class="rsection" aria-labelledby="summary-title">
+          <h2 id="summary-title"><svg class="wtick" width="30" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false"><path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Summary</h2>
+          <p class="summary">{resume.summary}</p>
+        </section>
+
+        <section class="rsection" aria-labelledby="skills-title">
+          <h2 id="skills-title"><svg class="wtick" width="30" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false"><path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Core skills</h2>
+          <dl class="skills">
+            {
+              resume.skills.map((group) => (
+                <div class="skill">
+                  <dt>{group.name}</dt>
+                  <dd>{group.items.join(', ')}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+
+        <section class="rsection" aria-labelledby="experience-title">
+          <h2 id="experience-title"><svg class="wtick" width="30" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false"><path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Experience</h2>
+          {
+            resume.experience.map((job) => (
+              <div class="job">
+                <div class="job-head">
+                  <h3>{job.title}</h3>
+                  <p class="job-dates">{job.dates}</p>
+                </div>
+                <p class="job-meta">{job.place ? `${job.employer} · ${job.place}` : job.employer}</p>
+                <ul>
+                  {job.bullets.map((bullet) => <li>{bullet}</li>)}
+                </ul>
+              </div>
+            ))
+          }
+        </section>
+
+        <section class="rsection" aria-labelledby="project-title">
+          <h2 id="project-title"><svg class="wtick" width="30" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false"><path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Selected project</h2>
+          <div class="job">
+            <div class="job-head">
+              <h3>{resume.selectedProject.title}</h3>
+            </div>
+            <p class="job-meta">{resume.selectedProject.employer}</p>
+            <ul>
+              {resume.selectedProject.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          </div>
+        </section>
+
+        <section class="rsection" aria-labelledby="education-title">
+          <h2 id="education-title"><svg class="wtick" width="30" height="12" viewBox="0 0 30 12" fill="none" aria-hidden="true" focusable="false"><path d="M1 7.5c3.5-5 7-5 10.5 0s7 5 10.5 0 5-3.6 7-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>Education</h2>
+          <div class="job">
+            <div class="job-head">
+              <h3>{resume.education.school}</h3>
+              <p class="job-dates">{resume.education.dates}</p>
+            </div>
+            <p class="job-meta">{resume.education.place}</p>
+            <p class="degree">{resume.education.degree}</p>
+            <ul>
+              {resume.education.achievements.map((achievement) => <li>{achievement}</li>)}
+            </ul>
+          </div>
+        </section>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---------- hero ---------- */
+  .resume-hero {
+    position: relative;
+    overflow: clip;
+    padding: clamp(40px, 5.2vw, 66px) 0 clamp(104px, 13vw, 156px);
+    background:
+      radial-gradient(50% 56% at 84% 8%, rgba(246, 178, 61, 0.32) 0%, rgba(246, 178, 61, 0) 72%),
+      linear-gradient(180deg, #fffaef 0%, #fdf4e4 42%, #eefaf5 100%);
+  }
+  .hero-waves {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 0;
+    width: 100%;
+    height: clamp(74px, 9vw, 118px);
+    pointer-events: none;
+  }
+  .hero-waves svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(28px, 4vw, 56px);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 20px;
+    padding: 9px 16px 9px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(11, 139, 135, 0.11);
+    border: 1px solid rgba(11, 139, 135, 0.22);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--deep);
+  }
+  .eyebrow .wtick {
+    width: 24px;
+  }
+  h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.038em;
+    font-weight: 700;
+  }
+  .role {
+    margin-top: 12px;
+    font-family: var(--serif);
+    font-size: clamp(1.12rem, 2vw, 1.45rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ocean);
+  }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+  .contact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ocean);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(13, 92, 102, 0.4);
+  }
+  .contact a:hover {
+    color: var(--deep);
+    text-decoration-color: var(--turquoise);
+  }
+  .sep {
+    color: rgba(47, 90, 93, 0.6);
+  }
+  .download {
+    margin-top: 20px;
+  }
+  .hero-mark {
+    justify-self: end;
+    color: var(--turquoise);
+    opacity: 0.85;
+  }
+
+  /* ---------- the paper ---------- */
+  .resume-body {
+    padding: 0 0 clamp(54px, 7vw, 92px);
+  }
+  .paper {
+    display: grid;
+    gap: clamp(26px, 3.2vw, 38px);
+    padding: clamp(26px, 4.2vw, 56px);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: clamp(20px, 2.6vw, 30px);
+    box-shadow: var(--shadow-card);
+  }
+  .rsection {
+    display: grid;
+    gap: 14px;
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .rsection h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(11, 139, 135, 0.16);
+    font-size: clamp(1.28rem, 1.9vw, 1.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .rsection h2 .wtick {
+    color: var(--turquoise);
+    flex: none;
+  }
+  .summary {
+    max-width: 46rem;
+    color: var(--ink-2);
+    font-size: 1.02rem;
+    line-height: 1.62;
+    text-wrap: pretty;
+  }
+
+  /* ---------- core skills ---------- */
+  .skills {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+  }
+  .skill {
+    display: grid;
+    grid-template-columns: 11.5rem minmax(0, 1fr);
+    gap: 16px;
+    align-items: baseline;
+  }
+  .skill dt {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--deep);
+  }
+  .skill dd {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.97rem;
+  }
+
+  /* ---------- experience, project, education ---------- */
+  .job + .job {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .job-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 20px;
+    flex-wrap: wrap;
+  }
+  .job h3 {
+    font-size: 1.13rem;
+    line-height: 1.24;
+    letter-spacing: -0.014em;
+    font-weight: 600;
+  }
+  .job-dates {
+    flex: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ocean);
+  }
+  .job-meta {
+    margin-top: 2px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .job ul {
+    display: grid;
+    gap: 6px;
+    margin: 10px 0 0;
+    padding-left: 1.1em;
+    color: var(--ink-2);
+  }
+  .job li {
+    max-width: 46rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .degree {
+    margin-top: 9px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-mark {
+      display: none;
+    }
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .skill {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+  @media (max-width: 520px) {
+    .resume-hero {
+      padding-top: clamp(28px, 6vw, 44px);
+      padding-bottom: clamp(96px, 24vw, 140px);
+    }
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      padding: 8px 13px 8px 10px;
+    }
+    .eyebrow .wtick {
+      display: none;
+    }
+    .contact {
+      column-gap: 8px;
+      font-size: 0.9rem;
+    }
+    .download :global(.btn) {
+      flex: 1 1 100%;
+    }
+    .job-head {
+      gap: 2px;
+      flex-direction: column;
+    }
+    .rsection h2 {
+      gap: 10px;
+    }
+  }
+
+  /* ---------- print: two US Letter pages ---------- */
+  @page {
+    size: letter;
+    margin: 0.48in 0.55in;
+  }
+  @media print {
+    :global(body) {
+      background: #fff;
+      color: #08363d;
+      font-size: 9.4pt;
+      line-height: 1.34;
+    }
+    :global(.site-header),
+    :global(.site-footer),
+    :global(.skip-link) {
+      display: none !important;
+    }
+    .resume-hero {
+      padding: 0 0 8pt;
+      background: none;
+      overflow: visible;
+    }
+    .hero-waves,
+    .hero-mark,
+    .eyebrow,
+    .download {
+      display: none !important;
+    }
+    /* No stacking context: Chromium writes a positioned, z-indexed block's text last, so the
+       name and contact line would follow the whole resume in the PDF's text layer. */
+    .resume-hero,
+    .hero-inner {
+      position: static;
+      z-index: auto;
+    }
+    .hero-inner {
+      display: block;
+    }
+    :global(.wrap) {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+    h1 {
+      font-size: 22pt;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .role {
+      margin-top: 2pt;
+      font-size: 10pt;
+      color: #0d5c66;
+    }
+    .contact {
+      margin-top: 3pt;
+      column-gap: 6pt;
+      font-size: 8.7pt;
+      color: #2f5a5d;
+    }
+    .contact a {
+      min-height: 0;
+      color: #0d5c66;
+      text-decoration: none;
+    }
+    .resume-body {
+      padding: 0;
+    }
+    .paper {
+      display: block;
+      padding: 0;
+      background: none;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .rsection {
+      max-width: none;
+      margin-top: 11pt;
+    }
+    .rsection h2 {
+      padding-bottom: 2.5pt;
+      border-bottom: 1px solid #9bdbd0;
+      font-family: var(--sans);
+      font-size: 8.6pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #08363d;
+      gap: 7pt;
+      break-after: avoid;
+    }
+    .rsection h2 .wtick {
+      width: 19pt;
+      height: 7pt;
+      color: #0b8b87;
+    }
+    .summary {
+      max-width: none;
+      font-size: 9.4pt;
+      line-height: 1.34;
+    }
+    .skills {
+      gap: 2.5pt;
+    }
+    .skill {
+      grid-template-columns: 1.1in minmax(0, 1fr);
+      gap: 8pt;
+    }
+    .skill dt,
+    .skill dd {
+      font-size: 9.2pt;
+    }
+    .job {
+      break-inside: avoid;
+    }
+    /* Space alone between jobs: a rule can land at the top of page 2. */
+    .job + .job {
+      margin-top: 11pt;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .job h3 {
+      font-size: 10.4pt;
+    }
+    .job-dates {
+      font-size: 8.2pt;
+    }
+    .job-meta {
+      margin-top: 0.5pt;
+      font-size: 9.2pt;
+    }
+    .job ul {
+      margin-top: 3pt;
+      gap: 1.5pt;
+      padding-left: 11pt;
+    }
+    .job li {
+      max-width: none;
+      font-size: 9.2pt;
+      line-height: 1.31;
+    }
+    .degree {
+      margin-top: 3pt;
+      font-size: 9.2pt;
+    }
+    a {
+      color: #0d5c66;
+      text-decoration: none;
+    }
+  }
+</style>
