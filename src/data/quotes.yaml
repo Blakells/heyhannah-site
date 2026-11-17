@@ -1,0 +1,38 @@
+count: 10
+items:
+  - id: barbara-green-home
+    text: "She writes compelling, thoughtful UX copy and has a strong instinct for creating content that truly helps users succeed."
+    name: Barbara Green
+    role: UX Content Strategy & Operations
+    relationship: managed Hannah directly at ACS Technologies
+  - id: barbara-green-about
+    text: "Hannah supported multiple products and consistently got up to speed quickly, taking the time to deeply understand and empathize with our customers."
+    name: Barbara Green
+    role: UX Content Strategy & Operations
+    relationship: her manager
+    showRelationship: true
+  - id: dale-ahn
+    text: "She's a stellar UX writer who quickly understands user intent and needs, creating in-product content that helped elevate my design solutions."
+    name: Dale Ahn
+    role: UX Design Manager
+    relationship: colleague on the same team
+  - id: dani-robertshaw
+    text: "She knows how to dissect complex information and transform it into easy-to-understand documentation."
+    name: Dani Robertshaw
+    role: Technical Writer
+    relationship: colleague on the same team
+  - id: patrice-bethea
+    text: "As a UX writer, Hannah took the time to deeply understand each project's goals and user needs, and she translated complex ideas into clear, effective messaging for clients."
+    name: Patrice Bethea
+    role: Product Owner
+    relationship: colleague on the same team
+  - id: amy-lauren-scott
+    text: "I watched her grow from a college intern during her senior year at Francis Marion University to a Senior Technical/UX/Content Writer."
+    name: Amy Lauren Scott
+    role: Professional & Technical Writer
+    relationship: colleague on the same team
+  - id: ken-brisco
+    text: "She knows how to communicate value in a way customers can easily consume without overwhelming them with unnecessary jargon or noise."
+    name: Ken Brisco
+    role: Product Marketing
+    relationship: ACS Technologies

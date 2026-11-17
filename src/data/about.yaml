@@ -1,0 +1,75 @@
+hero:
+  eyebrow: About
+  title: About Hannah
+  lede: "I design clear, user-centered content for SaaS products — improving onboarding, product flows, and customer understanding through UX writing, documentation, and video."
+
+story:
+  paragraphs:
+    - "I started at ACS Technologies as a technical writing intern during my senior year at Francis Marion University. The internship led directly to a full-time position, and I stayed more than seven years, moving from technical writing into UX writing and content design."
+    - "In January 2026 I joined the Drs. Bruce and Lee Foundation as Documentation and Information Management Specialist. There I designed a SharePoint records system for more than 30 years of the foundation’s records: the information architecture, taxonomy, metadata and naming conventions that turned a large, fragmented archive into a structured, searchable resource."
+  roles:
+    - title: Technical Writing Intern
+      employer: ACS Technologies
+      dates: Jul 2018 – Jan 2019
+      note: Supported documentation and video production for SaaS products during a hands-on internship.
+    - title: Technical Writer
+      employer: ACS Technologies
+      dates: Jan 2019 – Aug 2021
+      note: Authored Help Center articles and integration guides, and led instructional video production.
+    - title: Junior UX Writer
+      employer: ACS Technologies
+      dates: Aug 2021 – Dec 2023
+      note: Moved into UX content, shaping in-product copy and documentation strategy for complex SaaS platforms.
+    - title: Senior UX Writer
+      employer: ACS Technologies
+      dates: Dec 2023 – Dec 2025
+      note: Owned 100% of Help Center content for Go Method and Growth Method, and led UX content strategy across products.
+    - title: Documentation and Information Management Specialist
+      employer: Drs. Bruce and Lee Foundation
+      dates: Jan 2026 – Present
+      note: Designed a centralized SharePoint records system covering more than 30 years of organizational records.
+
+howIWork:
+  paragraphs:
+    - "I like to get involved in the project or problem BEFORE the UI exists. I typically start from the beginning — “Why are we doing this?” — and from there I can define the problem. This is where content begins."
+    - "I have a lot of experience on Agile teams, working cross-functionally with product owners, engineers and support teams. I’ve embedded content into the product lifecycle, keeping documentation in sync with system changes and serving both user needs and business goals."
+    - "I think less about the screen and more about the user case and how they will transition throughout the product."
+  creates:
+    intro: "I create help content, user workflows, error state pages and responses, onboarding, product microcopy, UX strategy and video strategy, and conversation design thinking."
+    items:
+      - Help content
+      - User workflows
+      - Error states and responses
+      - Onboarding
+      - Product microcopy
+      - UX and video strategy
+      - Conversation design thinking
+  ai:
+    label: On AI
+    text: "I haven’t owned a fully AI-driven product yet. I’ve done a lot of adjacent work — like designing guided user flows, writing system responses, and handling new errors or use cases as they come up."
+
+kindWords:
+  quoteIds:
+    - barbara-green-about
+    - dale-ahn
+    - dani-robertshaw
+    - patrice-bethea
+    - amy-lauren-scott
+
+beyond:
+  photography:
+    title: Motorsports photography
+    text: "I shoot motorcycle racing up and down the East Coast as Umbra Photography: fast subjects, changing light, tight deadlines."
+    image: race
+    alt: "Two motorcycles leaning into a corner on a race track, a red bike leading"
+  fostering:
+    title: Kitten fostering
+    text: "I rescue and foster kittens until they’re healthy, social and ready for a home of their own."
+    image: hannah-kitten
+    alt: "Hannah holding a tabby kitten"
+    gallery:
+      - image: kitten-1
+        alt: "A tabby kitten with a rust-colored patch on its nose, held close to the camera"
+      - image: kitten-2
+        alt: "A green-eyed tabby kitten sitting on a pale blue chair and looking up"
+  personal: "Whether I’m absorbed in a good book, traveling, dilly-dallying in Animal Crossing, or spending time at the beach, I bring the same curiosity to my life as I do to my work."

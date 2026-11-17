@@ -1,0 +1,184 @@
+- slug: docusign-case-study
+  label: Case study
+  title: Integrating DocuSign with Go Method
+  summary: A step-by-step admin guide for a confusing setup, which reduced support inquiries and became the template for future integration docs.
+  featured: true
+  lede: How I turned a confusing DocuSign integration setup into a step-by-step guide that administrators could follow on their own.
+  sections:
+    - heading: Problem / opportunity
+      paragraphs:
+        - Customers needed a clear, step-by-step guide to configure DocuSign digital signatures in Go Method. Ambiguity in setup was driving support tickets and inconsistent adoption.
+    - heading: Audience
+      paragraphs:
+        - Go Method administrators and platform implementers — both technical and non-technical users.
+    - heading: Goal
+      paragraphs:
+        - Decrease support volume, increase self-serve success, and provide a scalable reference for both users and internal support teams.
+    - heading: Approach / my role
+      paragraphs:
+        - I collaborated with engineering and product SMEs, mapped the integration workflow, translated requirements into clear steps, and authored documentation that aligned with established style and usability standards.
+    - heading: Challenges & decisions
+      paragraphs:
+        - Balanced variable audience skill levels, maintained accuracy amid evolving product behavior, and standardized structure for future reuse.
+    - heading: Outcome / impact
+      paragraphs:
+        - Reduced support inquiries, provided a scalable reference, and influenced future integration documentation templates.
+    - heading: What this demonstrates
+      paragraphs:
+        - Strategic documentation skills, cross-functional collaboration, and ability to simplify complex technical workflows.
+  links:
+    - label: DocuSign integration guide in the Go Method Help Center
+      href: https://help.acst.com/en/go-method/how-to/integrations/digital-signatures/docusign
+
+- slug: help-centers
+  label: Documentation
+  title: Help Centers for Go Method and Growth Method
+  summary: Owned the information architecture, articles and metadata for two SaaS products, end to end.
+  featured: true
+  lede: I owned 100% of Help Center content for Go Method and Growth Method, from information architecture and article structure to topic metadata.
+  sections:
+    - heading: What I owned
+      paragraphs:
+        - I led documentation and UX content strategy for multi-product cloud SaaS platforms. Across both product Help Centers I drove information architecture, article structure and topic metadata, and defined scalable content frameworks for long-term maintainability.
+    - heading: Live examples
+      items:
+        - label: Integrations
+          description: Simplified complex system integrations — covering payments, background checks, e-signatures and travel tools — into clear, actionable content for users.
+          href: https://help.acst.com/en/go-method/how-to/integrations
+        - label: People
+          description: Improved clarity around participant management by writing intuitive, step-by-step guidance for creating, updating and organizing user profiles.
+          href: https://help.acst.com/en/go-method/how-to/manage-people/participants/participant-profiles
+        - label: Funding & Giving
+          description: Simplified donation flows and funding milestones, helping users track contributions and manage financial goals with clarity.
+          href: https://help.acst.com/en/go-method/how-to/giving/allocation-types
+
+- slug: onboarding
+  label: Documentation
+  title: Onboarding & release notes
+  summary: Getting-started guides, first-time setup and release notes, written alongside frequent Agile releases.
+  featured: false
+  lede: Onboarding documentation and multi-step workflows designed to reduce setup friction and support self-serve adoption for new customers.
+  sections:
+    - heading: Onboarding
+      paragraphs:
+        - Getting-started guides and multi-step workflows that help new customers find their way around the product.
+      items:
+        - label: Getting Started in Go Method
+          href: https://help.acst.com/en/go-method/guides/getting-started-in-go-method
+        - label: Trip Management for Team Leaders
+          href: https://help.acst.com/en/go-method/guides/trip-management-for-team-leaders
+        - label: Getting Started in Growth Method
+          href: https://help.acst.com/en/growth-method/guides/getting-started-in-growth-method
+        - label: Best Practices
+          href: https://help.acst.com/en/growth-method/guides/best-practices/dynamic-fields
+        - label: Daily Management
+          href: https://help.acst.com/en/growth-method/guides/daily-management/roles
+    - heading: First-time setup
+      paragraphs:
+        - The setup steps new administrators need before the product can do its work.
+      items:
+        - label: Accounts
+          href: https://help.acst.com/en/go-method/how-to/accounts
+        - label: Event Checklist
+          href: https://help.acst.com/en/go-method/how-to/event-checklist
+        - label: Roles & Permissions
+          href: https://help.acst.com/en/go-method/how-to/manage-people/roles-and-permissions/roles-in-go-method
+    - heading: Release notes ("What's new")
+      paragraphs:
+        - Feature documentation produced in an Agile environment, aligned with frequent product releases and evolving system behavior.
+      items:
+        - label: Go Method — January 31, 2024
+          href: https://help.acst.com/en/go-method/whats-new/2024/january-31-2024
+        - label: Go Method — September 13, 2024
+          href: https://help.acst.com/en/go-method/whats-new/2024/september-13-2024
+        - label: Go Method — December 6, 2024
+          href: https://help.acst.com/en/go-method/whats-new/2024/december-6-2024
+        - label: Go Method — February 17, 2025
+          href: https://help.acst.com/en/go-method/whats-new/2025/february-17-2025
+        - label: Go Method — March 28, 2025
+          href: https://help.acst.com/en/go-method/whats-new/2025/march-28-2025
+        - label: Go Method — July 29, 2025
+          href: https://help.acst.com/en/go-method/whats-new/2025/july-29-2025
+
+- slug: microcopy
+  label: UX writing
+  title: Microcopy across multiple products
+  summary: "Sign-in, warnings, an AI support chatbot and financial UI: the small words that keep users moving."
+  featured: true
+  lede: A few samples of my microcopy across multiple products.
+  sections:
+    - heading: Samples
+      paragraphs:
+        - These screens come from several products and cover the moments where a few words decide whether someone keeps going.
+  images:
+    - key: microcopy-new-user-sign-in
+      caption: New user sign-in
+      alt: Two phone screens for signing in to Growth Method. The first asks for an organization code, with the note "Can be found in your welcome email"; the second asks for a username and password.
+    - key: microcopy-informative-icons
+      caption: Informative icons for quick tasks
+      alt: A Max Capacity field with an Allow Guests checkbox and an info tooltip reading "When Allow Guests is selected, individuals can add guests during their registration."
+    - key: microcopy-warning-notifications
+      caption: Warning notifications
+      alt: Two warning dialogs. Remove Pending Invites says the action cannot be undone and asks for a reason; Cancel Event explains that a registration event cannot be reinstated once canceled.
+    - key: microcopy-ai-support-chatbot
+      caption: AI + support chatbot
+      alt: An ACS Technologies support chat that promises to connect the visitor with an agent, then an after-hours reply pointing to the Help Center.
+    - key: microcopy-financial-ui
+      caption: Financial UI
+      alt: A Billing Details invoice view with the invoice number, status, dates and a table of line items and totals.
+
+- slug: video
+  label: Video
+  title: Product video and walkthroughs
+  summary: Led UX video across R&D, from scripts and recording to graphics, thumbnails and team training.
+  featured: true
+  lede: I expanded the Help Center experience into multimodal learning by introducing instructional video and visual walkthroughs—ensuring content was accessible to users with different learning preferences.
+  sections:
+    - heading: How I worked
+      paragraphs:
+        - I led UX video content across R&D, establishing production guidelines, defining quality and consistency standards, and building a scalable framework for video creation across teams.
+        - This included scripting, recording, editing, and designing supporting visuals such as graphics and thumbnails to enhance clarity and engagement.
+        - Beyond production, I trained team members, interns and cross-functional partners on video tools and best practices, enabling broader adoption and ensuring content quality.
+        - This work extended documentation beyond static articles into guided, experience-driven content that more closely mirrors how users learn and interact with complex systems. To really drive user experience, I would pair the video content with my onboarding flows.
+  links:
+    - label: Go Method video basics
+      href: https://help.acst.com/en/go-method/video/go-method-basics
+    - label: Realm getting-started videos
+      href: https://help.acst.com/en/realm/video-library/realm-video-library/getting-started--setup
+
+- slug: marketing-emails
+  label: Marketing
+  title: Marketing emails
+  summary: A four-email trial series and first-touch Help Center hubs, built to reduce overwhelm and drive self-serve onboarding.
+  featured: false
+  lede: A series of drip emails for new clients on a 30-day trial, written with the AIDA framework, plus first-touch Help Center experiences.
+  sections:
+    - heading: The trial email series
+      paragraphs:
+        - I wrote a series of drip emails for new clients using the AIDA framework (clients were on a 30-day trial). Below are 4 pieces of that series.
+    - heading: First-touch hubs
+      paragraphs:
+        - I also designed first-touch help center experiences using a Problem → Value → Guided Action framework to reduce user overwhelm and drive self-serve onboarding.
+      items:
+        - label: Your mission — trip management hub
+          href: https://help.acst.com/en/go-method/guides/your-mission-trip-management-hub
+        - label: Your ministry — growth hub
+          href: https://help.acst.com/en/growth-method/guides/your-ministry-growth-hub
+  files:
+    - label: Welcome
+      href: /samples/email-1-welcome.pdf
+      preview: email-1-preview
+      previewAlt: Preview of the Welcome email, the first in the trial series.
+    - label: Getting started
+      href: /samples/email-2-getting-started.pdf
+      preview: email-2-preview
+      previewAlt: Preview of the Getting started email, the second in the trial series.
+    - label: Integrations
+      href: /samples/email-3-integrations.pdf
+      preview: email-3-preview
+      previewAlt: Preview of the Integrations email, the third in the trial series.
+    - label: Best use cases
+      href: /samples/email-4-best-use-cases.pdf
+      preview: email-4-preview
+      previewAlt: Preview of the Best use cases email, the fourth in the trial series.
+  quoteId: ken-brisco
