@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { featuredWork, workPages } from '../../lib/work';
+
+// The four cards from Home first, then the two extra pages.
+const ordered = [...featuredWork, ...workPages.filter((page) => !page.featured)];
+const accents = [1, 2, 3, 4, 1, 2] as const;
+---
+<BaseLayout
+  title="Work · Hannah Bailey"
+  description="Help Centers, in-product copy, onboarding, video and marketing: samples from seven years of writing for SaaS products, most of them live today."
+>
+  <section class="index-hero" aria-labelledby="work-title">
+    <div class="hero-waves" aria-hidden="true">
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false">
+        <path fill="#c8eae2" d="M0 30c96-24 192 4 288 10s192-22 288-28 192 26 288 30 192-20 288-24 192 10 288 6V160H0z"></path>
+        <path fill="#9bdbd0" d="M0 72c96-22 192 6 288 12s192-20 288-26 192 24 288 28 192-18 288-22 192 8 288 4V160H0z"></path>
+        <path fill="#5fc4b8" opacity=".45" d="M0 108c96-20 192 6 288 10s192-18 288-24 192 22 288 26 192-18 288-20 192 6 288 4V160H0z"></path>
+        <path fill="#fbf3e6" d="M0 132c96-16 192 6 288 10s192-16 288-22 192 20 288 24 192-14 288-18 192 6 288 4V160H0z"></path>
+      </svg>
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-head">
+        <svg class="wtick" width="40" height="14" viewBox="0 0 40 14" fill="none" aria-hidden="true" focusable="false">
+          <path d="M1 9c4.5-6.4 9-6.4 13.5 0s9 6.4 13.5 0S33.4 4 39 5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        <h1 id="work-title">Work</h1>
+      </div>
+      <p class="lede">Help Centers, in-product copy, onboarding, video and marketing: samples from seven years of writing for SaaS products, most of them live today.</p>
+    </div>
+  </section>
+
+  <section class="work-index" aria-label="All work">
+    <div class="wrap">
+      <div class="work-grid">
+        {
+          ordered.map((page, index) => (
+            <WorkCard page={page} accent={accents[index] ?? 1} level="h2" />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .index-hero {
+    position: relative;
+    overflow: clip;
+    padding: clamp(44px, 5.6vw, 76px) 0 clamp(104px, 13vw, 156px);
+    background:
+      radial-gradient(52% 60% at 84% 6%, rgba(246, 178, 61, 0.3) 0%, rgba(246, 178, 61, 0) 70%),
+      linear-gradient(180deg, #fffaef 0%, #fdf4e4 46%, #eefaf5 100%);
+  }
+  .hero-waves {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 0;
+    width: 100%;
+    height: clamp(74px, 9vw, 118px);
+    pointer-events: none;
+  }
+  .hero-waves svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.036em;
+    font-weight: 700;
+  }
+  .lede {
+    margin-top: clamp(18px, 2.4vw, 26px);
+    max-width: 44rem;
+    font-size: var(--text-lede);
+    line-height: 1.62;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .work-index {
+    padding: clamp(30px, 4vw, 46px) 0 clamp(56px, 7vw, 88px);
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .work-index :global(.card-title) {
+    font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+  }
+
+  @media (max-width: 720px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  @media (max-width: 520px) {
+    .hero-head {
+      gap: 12px;
+    }
+  }
+</style>

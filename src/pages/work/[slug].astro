@@ -1,0 +1,405 @@
+---
+import { Image, getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Quote from '../../components/Quote.astro';
+import WorkPageShell from '../../components/WorkPageShell.astro';
+import { sample } from '../../lib/images';
+import { quote } from '../../lib/quotes';
+import { nextWorkPage, type WorkPage, workHref, workPages } from '../../lib/work';
+
+export function getStaticPaths() {
+  return workPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+interface Props {
+  page: WorkPage;
+}
+const { page } = Astro.props;
+const next = nextWorkPage(page.slug);
+
+/** Only the pages whose examples are external help-site links use the shell's list. */
+const liveLinks = ['docusign-case-study', 'video'].includes(page.slug) ? page.links : [];
+
+/** Screenshot samples: the displayed image and the full-size version its link opens. */
+const shots = await Promise.all(
+  page.images.map(async (image) => {
+    const meta = sample(image.key);
+    const full = await getImage({ src: meta, width: meta.width });
+    const displayWidth = Math.min(meta.width, 960);
+    return {
+      ...image,
+      meta,
+      displayWidth,
+      displayHeight: Math.round((displayWidth * meta.height) / meta.width),
+      href: full.src,
+    };
+  }),
+);
+
+const files = page.files.map((file) => {
+  const preview = file.preview ? sample(file.preview) : undefined;
+  return {
+    ...file,
+    preview,
+    previewWidth: 450,
+    previewHeight: preview ? Math.round((450 * preview.height) / preview.width) : 0,
+  };
+});
+
+/**
+ * Every sample sits in a single column in the order the spec lists it. Narrow screenshots get a
+ * narrower frame than landscapes, so the column stays balanced without changing their order.
+ */
+const frameClass = (shot: { meta: { width: number; height: number } }) => {
+  const ratio = shot.meta.width / shot.meta.height;
+  if (ratio < 0.8) return 'shot-phone';
+  if (ratio < 1.1) return 'shot-square';
+  return undefined;
+};
+
+const pullQuote = page.quoteId ? quote(page.quoteId) : undefined;
+const metaDescription = page.summary;
+---
+<BaseLayout title={`${page.title} · Hannah Bailey`} description={metaDescription}>
+  <WorkPageShell
+    label={page.label}
+    title={page.title}
+    lede={page.lede}
+    links={liveLinks}
+    next={{ label: next.title, href: workHref(next.slug) }}
+  >
+    {
+      page.sections.map((section, index) => (
+        <section>
+          <h2>{section.heading}</h2>
+          {section.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+
+          {section.items.some((item) => item.description) ? (
+            <ul class="sample-list">
+              {section.items.map((item) => (
+                <li class="sample-card">
+                  <h3>{item.label}</h3>
+                  {item.description && <p>{item.description}</p>}
+                  {item.href && (
+                    <a class="sample-link" href={item.href}>
+                      View live example <span aria-hidden="true">→</span>
+                      <span class="visually-hidden">: {item.label}</span>
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            section.items.length > 0 && (
+              <ul class="link-list">
+                {section.items.map((item) => (
+                  <li>
+                    {item.href ? (
+                      <a href={item.href}>
+                        {item.label}
+                        <span class="arrow" aria-hidden="true">→</span>
+                      </a>
+                    ) : (
+                      item.label
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )
+          )}
+
+          {/* Screenshots and email files belong directly below the section that introduces them. */}
+          {index === 0 && shots.length > 0 && (
+            <div class="shots">
+              {shots.map((shot) => (
+                <figure class:list={['shot', frameClass(shot)]}>
+                  <a class="shot-link" href={shot.href}>
+                    <span class="shot-frame">
+                      <Image
+                        src={shot.meta}
+                        alt={shot.alt}
+                        width={shot.displayWidth}
+                        height={shot.displayHeight}
+                        loading="lazy"
+                      />
+                    </span>
+                    <span class="shot-caption">
+                      {shot.caption && <span class="shot-label">{shot.caption}</span>}
+                      <span class="shot-open">
+                        View full size <span aria-hidden="true">→</span>
+                      </span>
+                    </span>
+                  </a>
+                </figure>
+              ))}
+            </div>
+          )}
+
+          {index === 0 && files.length > 0 && (
+            <ul class="email-grid">
+              {files.map((file) => (
+                <li class="email-card">
+                  <a class="email-shot" href={file.href}>
+                    {file.preview && (
+                      <Image
+                        src={file.preview}
+                        alt={file.previewAlt ?? ''}
+                        width={file.previewWidth}
+                        height={file.previewHeight}
+                        loading="lazy"
+                      />
+                    )}
+                    <span class="email-open">Open PDF</span>
+                    <span class="visually-hidden">: {file.label}</span>
+                  </a>
+                  <h3 class="email-title">{file.label}</h3>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))
+    }
+
+    {
+      pullQuote && (
+        <section class="pullquote" aria-label="Recommendation">
+          <Quote quote={pullQuote} tone="plain" showRelationship />
+        </section>
+      )
+    }
+  </WorkPageShell>
+</BaseLayout>
+
+<style>
+  .sample-list {
+    display: grid;
+    gap: 16px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .sample-card {
+    display: grid;
+    gap: 10px;
+    padding: clamp(20px, 2.6vw, 28px);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    box-shadow: 0 26px 46px -44px rgba(8, 54, 61, 0.55);
+  }
+  .sample-card h3 {
+    font-size: 1.32rem;
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+  }
+  .sample-card p {
+    max-width: 46rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .sample-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 44px;
+    width: fit-content;
+    color: var(--ocean);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: rgba(13, 92, 102, 0.42);
+    text-underline-offset: 4px;
+  }
+  .sample-link:hover {
+    color: var(--deep);
+    text-decoration-color: var(--turquoise);
+  }
+
+  .link-list {
+    display: grid;
+    gap: 2px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .link-list a,
+  .link-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    width: fit-content;
+    color: var(--ocean);
+    font-weight: 600;
+    text-decoration-color: rgba(13, 92, 102, 0.42);
+    text-underline-offset: 4px;
+  }
+  .link-list li {
+    color: var(--ink-2);
+  }
+  .link-list a:hover {
+    color: var(--deep);
+    text-decoration-color: var(--turquoise);
+  }
+  .link-list .arrow {
+    transition: transform 0.2s ease;
+  }
+  .link-list a:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .shots {
+    display: grid;
+    gap: clamp(28px, 3.4vw, 40px);
+    margin-top: 8px;
+  }
+  .shot {
+    width: 100%;
+  }
+  .shot-phone {
+    max-width: 26rem;
+  }
+  .shot-square {
+    max-width: 34rem;
+  }
+  .shot-link {
+    display: grid;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .shot-frame {
+    display: block;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-card);
+    box-shadow: 0 26px 46px -44px rgba(8, 54, 61, 0.55);
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+  .shot-link:hover .shot-frame {
+    transform: translateY(-3px);
+    box-shadow: 0 30px 50px -40px rgba(8, 54, 61, 0.65);
+  }
+  .shot-frame :global(img) {
+    width: 100%;
+    height: auto;
+  }
+  .shot-caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 18px;
+  }
+  .shot-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink-2);
+  }
+  .shot-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    color: var(--ocean);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: rgba(13, 92, 102, 0.42);
+    text-underline-offset: 4px;
+  }
+  .shot-link:hover .shot-open {
+    color: var(--deep);
+    text-decoration-color: var(--turquoise);
+  }
+
+  .email-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .email-card {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+  .email-shot {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 900 / 1391;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    box-shadow: 0 22px 38px -36px rgba(8, 54, 61, 0.6);
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+  .email-shot:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 28px 48px -36px rgba(8, 54, 61, 0.7);
+  }
+  .email-shot :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .email-open {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(8, 54, 61, 0.9);
+    color: var(--sand);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .email-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .pullquote {
+    padding: clamp(22px, 3vw, 32px);
+    background:
+      radial-gradient(80% 120% at 100% 0%, rgba(246, 178, 61, 0.24) 0%, rgba(246, 178, 61, 0) 62%),
+      var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--sun);
+    border-radius: var(--radius-card);
+    box-shadow: 0 26px 46px -44px rgba(8, 54, 61, 0.55);
+  }
+
+  @media (max-width: 900px) {
+    .email-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 520px) {
+    .email-grid {
+      grid-template-columns: 1fr;
+    }
+    .email-shot {
+      max-width: 340px;
+    }
+  }
+</style>
