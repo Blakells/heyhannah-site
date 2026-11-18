@@ -1,6 +1,6 @@
 headline: Technical Writer · UX Writer · Content Designer
 summary: >-
-  Technical writer, UX writer and content designer with 7+ years of experience owning end-to-end documentation for complex cloud-based SaaS platforms. Specializes in Help Center architecture, developer-adjacent documentation, onboarding content, and UX writing that reduces friction and drives product adoption. Proven ability to translate intricate system behavior into clear, structured content for both technical and non-technical audiences. Strong cross-functional collaborator in Agile environments, partnering with engineering, product, design, and compliance teams to deliver accurate, user-centered content under tight release cycles.
+  UX Writer and Content Designer with 7+ years of experience creating user-centered content for complex SaaS and platform products. I specialize in UX content, onboarding, in-product guidance, help experiences, and content strategy that reduce friction, improve usability, and help users successfully navigate complex products.
 skills:
   - name: Writing & Content
     items:
@@ -15,19 +15,25 @@ skills:
       - Copyediting
   - name: Tools & Platforms
     items:
-      - Heretto (CMS)
-      - DITA
-      - SharePoint
-      - Jira
-      - GitHub
-      - Pendo
-      - Sigma
       - Figma
       - FigJam
+      - Pendo
+      - Sigma
+      - Jira
+      - GitHub
+      - Heretto (CMS)
+      - DITA XML
+      - Confluence
+      - SharePoint
+      - Adobe Creative Suite
+      - Affinity Suite
       - Camtasia
       - Videate
       - Google Analytics
-      - Affinity Suite
+      - Google Workspace
+      - Microsoft 365
+      - DocuSign
+      - Claude AI
   - name: Documentation
     items:
       - API Documentation
@@ -53,50 +59,55 @@ experience:
     place: Florence, SC, hybrid
     dates: Jan 2026 – Present
     bullets:
-      - Designed and implemented a centralized SharePoint document management system for more than 30 years of organizational records.
-      - Developed the information architecture, taxonomy, metadata, naming conventions, and organizational standards that turned a large, fragmented archive into a structured, searchable digital resource.
-      - Audited, categorized, and organized historical records across physical and digital formats, establishing documentation workflows and standards to improve accessibility, retrieval, consistency, and long-term records management.
-      - Edited and refined grant documentation and supporting materials.
+      - Edited and refined grant documentation and supporting materials while designing and implementing a centralized SharePoint document management system for more than 30 years of organizational records.
+      - Developed the information architecture, taxonomy, metadata, naming conventions, and organizational standards needed to transform a large, fragmented archive into a structured, searchable digital resource.
+      - Audited, categorized, and organized historical records across physical and digital formats while establishing documentation workflows and standards to improve accessibility, retrieval, consistency, and long-term records management.
+      - Applied technical writing, information architecture, and content organization principles to create a sustainable system for managing and maintaining the organization’s historical documentation.
   - title: Senior UX Writer
     employer: ACS Technologies
     place: Remote
     dates: Dec 2023 – Dec 2025
     bullets:
-      - Led documentation and UX content strategy for multi-product cloud SaaS platforms, owning 100% of Help Center content for Go Method and Growth Method products.
-      - Drove information architecture, article structure, and topic metadata across both product Help Centers, defining scalable content frameworks for long-term maintainability.
-      - Wrote UX copy for onboarding flows, modals, tooltips, error states, and feature launches, contributing to improved task completion and user adoption.
-      - Partnered with engineering, product, design, legal, and compliance teams to deliver accurate, user-centered content under tight Agile release cycles.
-      - Used Pendo analytics and user behavior data to evaluate documentation effectiveness, iterating to improve clarity, engagement, and usability.
-      - Spearheaded revamp of video production processes, implementing AI-based video tools (Videate) and training colleagues on new workflows.
-      - Mentored cross-functional partners in UX writing and documentation best practices, establishing consistent content patterns and voice and tone standards.
-      - Collaborated cross-functionally to develop onboarding documentation for a mission trip platform, significantly improving user experience and internal team workflows.
+      - Reimagined product documentation to improve consistency, usability, and long-term maintainability across multiple SaaS products.
+      - Partnered with product managers, designers, engineers, and researchers to create user-centered product content that reduced friction and improved task completion.
+      - Developed voice, tone, and editorial standards to improve consistency across product experiences and customer-facing documentation and video content.
+      - Planned and executed documentation strategies for new product releases within Agile development cycles.
+      - Improved information architecture and content organization to help users find answers more efficiently.
+      - Led organization-wide training initiatives for video content tools and AI-assisted workflows, serving as the primary point of contact for user support, troubleshooting, onboarding, and best practices.
+      - Used Pendo, Sigma, and Google Analytics to evaluate user behavior and identify opportunities to improve product documentation and in-product guidance.
+      - Served as the primary internal subject-matter expert for Videate AI, leading adoption across multiple teams, delivering training, troubleshooting complex issues, and collaborating directly with vendor support to improve workflows.
   - title: Junior UX Writer
     employer: ACS Technologies
     place: Remote
     dates: Aug 2021 – Dec 2023
     bullets:
-      - Transitioned from technical writing into UX content, shaping in-product copy and documentation strategy for complex SaaS platforms.
-      - Authored onboarding flows, modals, tooltips, and error states to reduce user friction and improve self-serve adoption.
-      - Conducted workflow analysis to align content with user journeys and product goals across multiple product lines.
-      - Collaborated with product, engineering, and design teams in Agile sprints to deliver clear, user-centered content at scale.
-      - Performed regular content audits for accuracy, consistency, and alignment with evolving system behavior.
+      - Wrote and maintained user-centered product content for onboarding experiences, help documentation, and feature releases across multiple SaaS products.
+      - Collaborated with UX designers, engineers, product managers, and researchers to simplify complex workflows into intuitive user experiences.
+      - Conducted content audits and reorganized documentation to improve discoverability and reduce user confusion.
+      - Applied analytics and customer feedback to continuously improve documentation quality and product guidance.
+      - Created contextual help, onboarding resources, release documentation, video content, and support content aligned with user goals.
+      - Established documentation and video content standards that improved consistency across products and teams.
   - title: Technical Writer
     employer: ACS Technologies
     place: Florence, SC, remote
     dates: Jan 2019 – Aug 2021
     bullets:
-      - Authored and maintained technical documentation for cloud-based SaaS products, including Help Center articles, integration guides, and feature-level content.
-      - Led instructional video production using Camtasia, establishing production guidelines, creating video graphics and thumbnails, and training team members on video workflows.
-      - Partnered with engineers and product managers to translate complex system behavior into accessible, structured documentation.
-      - Maintained and versioned documentation across frequent product releases, ensuring content accuracy amid rapid development cycles.
+      - Created technical and UX documentation for SaaS applications, helping customers understand complex features and workflows.
+      - Partnered with engineers and subject-matter experts to translate technical concepts into accessible documentation.
+      - Developed knowledge base articles, release documentation, installation guides, help video content and user documentation.
+      - Organized and maintained structured documentation using DITA XML and content management systems.
+      - Participated in Agile product development, ensuring documentation evolved alongside product releases.
+      - Built expertise in information architecture, structured authoring, and developer-adjacent documentation.
   - title: Technical Writing Intern
     employer: ACS Technologies
     place: ""
     dates: Jul 2018 – Jan 2019
     bullets:
-      - Supported documentation and video production for SaaS products during a hands-on internship that led directly to a full-time position.
-      - Created instructional videos using Camtasia and assisted with Help Center content development.
-      - Developed foundational skills in structured documentation, editorial processes, and cross-functional collaboration within a professional content team.
+      - Collaborated with senior technical writers to create and maintain customer-facing documentation for SaaS products.
+      - Developed help documentation and troubleshooting/FAQ guides to support users in resolving common product issues.
+      - Produced instructional micro-video content using Camtasia to complement written documentation and enhance the customer learning experience.
+      - Learned structured authoring, documentation standards, and content management system workflows while contributing to ongoing documentation projects.
+      - Supported documentation updates for new features, product enhancements, and software releases.
 selectedProject:
   title: Integrating DocuSign with Go Method
   employer: ACS Technologies
@@ -108,7 +119,7 @@ education:
   school: Francis Marion University
   place: Florence, SC
   dates: 2014 – 2018
-  degree: Bachelor of Arts, Professional, Technical, Business & Scientific Writing
+  degree: Bachelor of Arts, Professional, Technical, Business, and Scientific Writing
   achievements:
     - Assisting Editor, Snow Island Review Journal — reviewed, selected and edited literary submissions for the university's annual literary journal.
     - Peer Writing Tutor, English Department.

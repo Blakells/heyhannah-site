@@ -176,11 +176,11 @@ describe('resume', () => {
     expect(resume.headline).toBe('Technical Writer · UX Writer · Content Designer');
   });
 
-  it('opens with the site-positioned summary', () => {
-    expect(resume.summary).toMatch(/^Technical writer, UX writer and content designer with 7\+ years of experience/);
+  it('opens with the summary from her LinkedIn About', () => {
+    expect(resume.summary).toMatch(/^UX Writer and Content Designer with 7\+ years of experience/);
   });
 
-  it('lists the roles with the titles and dates from LinkedIn', () => {
+  it('lists the roles with the titles, dates and bullet counts from LinkedIn', () => {
     expect(resume.experience.map((job) => [job.title, job.dates])).toEqual([
       ['Documentation and Information Management Specialist', 'Jan 2026 – Present'],
       ['Senior UX Writer', 'Dec 2023 – Dec 2025'],
@@ -188,6 +188,7 @@ describe('resume', () => {
       ['Technical Writer', 'Jan 2019 – Aug 2021'],
       ['Technical Writing Intern', 'Jul 2018 – Jan 2019'],
     ]);
+    expect(resume.experience.map((job) => job.bullets.length)).toEqual([4, 8, 6, 6, 5]);
   });
 
   it('covers the four skill groups, the selected project and her degree', () => {

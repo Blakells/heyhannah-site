@@ -225,13 +225,13 @@ The web page and the generated PDF share one source of content. The PDF must fit
 
 **Contact line.** Florence, SC · baileyhannah995@gmail.com · heyhannah.xyz · linkedin.com/in/hannah-bailey-hb2023.
 
-**Summary.** Her resume summary, opening "Technical writer, UX writer and content designer with 7+ years of
-experience…" in place of "Senior Technical Writer with 7+ years…", to match the site's positioning. The rest of the
-wording is unchanged.
+**Summary.** The first paragraph of her LinkedIn About, opening "UX Writer and Content Designer with 7+ years of
+experience…". (Updated 2026-11-18: the resume now matches her LinkedIn.)
 
-**Core skills.** As on her resume: Writing & Content, Tools & Platforms, Documentation and Process.
+**Core skills.** As on her resume: Writing & Content, Tools & Platforms, Documentation and Process. Tools & Platforms
+also lists the tools on her LinkedIn.
 
-**Experience.** Titles and dates follow LinkedIn. Bullets come from her resume.
+**Experience.** Titles, dates and bullets follow LinkedIn, word for word.
 
 | Role | Employer | Place | Dates |
 |---|---|---|---|
@@ -244,7 +244,7 @@ wording is unchanged.
 **Selected project.** Integrating DocuSign with Go Method.
 
 **Education.**
-- Francis Marion University, BA in Professional, Technical, Business & Scientific Writing, 2014–2018.
+- Francis Marion University, BA in Professional, Technical, Business, and Scientific Writing, 2014–2018.
 - Assisting Editor, Snow Island Review; Peer Writing Tutor; Student Government Association.
 
 ## 3. Content rules

@@ -30,7 +30,7 @@ test.describe('resume page', () => {
     const headings = await page.locator('main h2').allTextContents();
     expect(headings).toEqual(['Summary', 'Core skills', 'Experience', 'Selected project', 'Education']);
     await expect(page.locator('main')).toContainText(
-      'Technical writer, UX writer and content designer with 7+ years of experience',
+      'UX Writer and Content Designer with 7+ years of experience',
     );
   });
 
@@ -46,6 +46,7 @@ test.describe('resume page', () => {
     ]);
     await expect(skills.nth(0).locator('dd')).toContainText('Information Architecture');
     await expect(skills.nth(1).locator('dd')).toContainText('Heretto (CMS)');
+    await expect(skills.nth(1).locator('dd')).toContainText('Confluence');
     await expect(skills.nth(2).locator('dd')).toContainText('Help Center Management');
     await expect(skills.nth(3).locator('dd')).toContainText('AI-Assisted Workflows');
   });
@@ -69,7 +70,7 @@ test.describe('resume page', () => {
       'Jul 2018 – Jan 2019',
     ]);
     await expect(jobs.nth(0)).toContainText('Drs. Bruce and Lee Foundation · Florence, SC, hybrid');
-    await expect(jobs.nth(1)).toContainText('owning 100% of Help Center content for Go Method and Growth Method products');
+    await expect(jobs.nth(1)).toContainText('Served as the primary internal subject-matter expert for Videate AI');
     await expect(jobs.nth(4)).toContainText('ACS Technologies');
   });
 
@@ -84,9 +85,10 @@ test.describe('resume page', () => {
     await expect(education.getByRole('heading', { level: 3 })).toHaveText('Francis Marion University');
     await expect(education).toContainText('2014 – 2018');
     await expect(education).toContainText(
-      'Bachelor of Arts, Professional, Technical, Business & Scientific Writing',
+      'Bachelor of Arts, Professional, Technical, Business, and Scientific Writing',
     );
     await expect(education).toContainText('Assisting Editor, Snow Island Review Journal');
+    await expect(education).toContainText('Peer Writing Tutor, English Department');
     await expect(education).toContainText('Student Government Association (SGA) Member');
   });
 
